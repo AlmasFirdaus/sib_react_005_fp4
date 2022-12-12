@@ -1,8 +1,25 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    container: {
+      center: true,
+      padding: '10rem',
+    },
+    fontFamily: {
+      libre: ['Libre Baskerville', ...defaultTheme.fontFamily.sans],
+      montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
+    },
+    extend: {
+      colors: {
+        primary: '#DE5D83',
+        secblack: '#101116',
+        secondary: '#bebebe',
+        secoppacity: '#d9d9d9',
+      },
+    },
   },
   plugins: [],
 };
