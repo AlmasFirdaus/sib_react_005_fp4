@@ -1,5 +1,5 @@
 import React from "react";
-import CartFilm from "../component/navbar/CartFilm";
+import CartFilm from "../component/CartFilm";
 
 const Details = () => {
     return (
