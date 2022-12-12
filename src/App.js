@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Footer from './component/footer/Footer';
 import Navbar from './component/navbar/Navbar';
 import Homepage from './pages/Homepage';
 import { getMovies } from './redux/features/movieSlice';
