@@ -8,6 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const hamburger = document.querySelector('#hamburger');
   const navMenu = document.querySelector('#nav-menu');
+  const formSearch = document.querySelector('#form-search');
 
   const searchChange = (e) => {
     setSearchInput(e.target.value.replace(' ', '-'));
@@ -15,6 +16,7 @@ const Navbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     window.scrollTo(0, 0);
     navigate(`search/${searchInput}`, { replace: true });
   };
@@ -33,7 +35,7 @@ const Navbar = () => {
 
     if (hamburger) {
       window.addEventListener('click', function (e) {
-        if (e.target !== hamburger && e.target !== navMenu) {
+        if (e.target !== hamburger && e.target !== navMenu && e.target !== formSearch) {
           hamburger.classList.remove('hamburger-active');
           navMenu.classList.add('hidden');
         }
@@ -50,7 +52,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-transparent absolute top-0 left-0 w-full flex items-center z-[99] ">
+    <header className="bg-transparent absolute top-0 left-0 w-full flex items-center z-[999] ">
       <div className="container px-10 xl:px-20 py-4">
         <div className="flex items-center justify-between relative">
           <div className="px-4">
@@ -107,7 +109,7 @@ const Navbar = () => {
                   </li>
                 </ul>
 
-                <form onSubmit={handleSubmit} className="pt-6 px-6 lg:pt-0 lg:px-0 flex">
+                <form onSubmit={handleSubmit} className="pt-6 px-6 lg:pt-0 lg:px-0 flex" id="form-search">
                   <input type="text" onChange={searchChange} className="w-full text-base border border-primary border-opacity-50 bg-secblack/20 rounded-lg text-white py-1 px-2 focus:outline-none focus:ring-0" placeholder="Search Movie" />
                 </form>
               </div>
