@@ -108,7 +108,7 @@ const Navbar = () => {
                 </ul>
 
                 <form onSubmit={handleSubmit} className="pt-6 px-6 lg:pt-0 lg:px-0 flex">
-                  <input type="text" onChange={searchChange} className="text-base border border-primary border-opacity-50 bg-secblack/20 rounded-lg text-white py-1 px-2 focus:outline-none focus:ring-0" placeholder="Search Movie" />
+                  <input type="text" onChange={searchChange} className="w-full text-base border border-primary border-opacity-50 bg-secblack/20 rounded-lg text-white py-1 px-2 focus:outline-none focus:ring-0" placeholder="Search Movie" />
                 </form>
               </div>
             </nav>
