@@ -6,9 +6,6 @@ const Navbar = () => {
   const [searchInput, setSearchInput] = useState('');
   const location = useLocation().pathname;
   const navigate = useNavigate();
-  const hamburger = document.querySelector('#hamburger');
-  const navMenu = document.querySelector('#nav-menu');
-  const formSearch = document.querySelector('#form-search');
 
   const searchChange = (e) => {
     setSearchInput(e.target.value.replace(' ', '-'));
@@ -32,15 +29,6 @@ const Navbar = () => {
         header.classList.remove('navbar-fixed');
       }
     };
-
-    if (hamburger) {
-      window.addEventListener('click', function (e) {
-        if (e.target !== hamburger && e.target !== navMenu && e.target !== formSearch) {
-          hamburger.classList.remove('hamburger-active');
-          navMenu.classList.add('hidden');
-        }
-      });
-    }
   });
 
   const hamburgerCLick = () => {
