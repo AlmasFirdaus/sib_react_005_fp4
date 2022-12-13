@@ -45,11 +45,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between relative">
           <div className="px-4">
             {location === '/' ? (
-              <a href="#home" className="font-libre text-white text-3xl">
+              <a href="#home" className="font-libre text-white lg:text-3xl md:text-3xl sm:text-xl">
                 Movie
               </a>
             ) : (
-              <Link to="/" className="font-libre text-white text-3xl">
+              <Link to="/" className="font-libre text-white lg:text-3xl md:text-3xl sm:text-xl">
                 Movie
               </Link>
             )}
