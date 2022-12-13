@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navbar-fixed {
-  @apply fixed z-[9999] bg-secblack bg-opacity-50 drop-shadow-sm;
+  @apply fixed z-[9999] bg-secblack bg-opacity-50 drop-shadow-sm border-b-[1px] border-primary;
   backdrop-filter: blur(5px);
 }
 

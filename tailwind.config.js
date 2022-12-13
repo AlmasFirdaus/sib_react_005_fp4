@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '10rem',
+      padding: '1rem',
     },
     fontFamily: {
       libre: ['Libre Baskerville', ...defaultTheme.fontFamily.sans],

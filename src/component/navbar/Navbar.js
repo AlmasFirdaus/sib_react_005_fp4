@@ -15,29 +15,19 @@ const Navbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/${searchInput}`);
-  };
-
-  const topFunction = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    window.scrollTo(0, 0);
+    navigate(`search/${searchInput}`, { replace: true });
   };
 
   useEffect(() => {
-    // Navbar Fixed
     window.onscroll = function () {
       const header = document.querySelector('header');
       const fixedNav = header.offsetTop;
-      const toTop = document.querySelector('#to-top');
 
       if (window.pageYOffset > fixedNav) {
         header.classList.add('navbar-fixed');
-        // toTop.classList.remove('hidden');
-        // toTop.classList.add('flex');
       } else {
         header.classList.remove('navbar-fixed');
-        // toTop.classList.remove('flex');
-        // toTop.classList.add('hidden');
       }
     };
 
@@ -60,12 +50,21 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-transparent absolute top-0 left-0 w-full flex items-center z-10 ">
+    <header className="bg-transparent absolute top-0 left-0 w-full flex items-center z-[99] ">
       <div className="container px-10 xl:px-20 py-4">
         <div className="flex items-center justify-between relative">
           <div className="px-4">
-            <span className="font-libre text-white text-3xl">Movie</span>
+            {location === '/' ? (
+              <a href="#home" className="font-libre text-white text-3xl">
+                Movie
+              </a>
+            ) : (
+              <Link to="/" className="font-libre text-white text-3xl">
+                Movie
+              </Link>
+            )}
           </div>
+
           <div className="flex items-center px-4">
             <button id="hamburger" name="hamburger" type="button" onClick={hamburgerCLick} className="block absolute right-4 lg:hidden">
               <span className="hamburger-line origin-top-left transition duration-300"></span>
@@ -73,33 +72,47 @@ const Navbar = () => {
               <span className="hamburger-line origin-bottom-left transition duration-300"></span>
             </button>
 
-            <nav id="nav-menu" className="hidden absolute py-5 lg:py-2 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
-              <div className="block lg:flex lg:items-center">
-                <ul className="block lg:flex space-x-10">
-                  <li className="group">
-                    <a href="#home" className="text-white">
-                      Home
-                    </a>
+            <nav
+              id="nav-menu"
+              className="hidden absolute py-6 lg:py-0 bg-black/40 shadow-lg text-white rounded-lg min-h-[5rem] lg:min-h-0 max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none"
+            >
+              <div className="block lg:flex lg:justify-center lg:items-center">
+                <ul className="block lg:flex lg:justify-center lg:items-center space-y-3 lg:space-y-0">
+                  <li className="group lg:flex">
+                    {location === '/' ? (
+                      <a href="#home" className="text-base py-2 mx-6 font-quicksand font-base group-hover:text-primary">
+                        Home
+                      </a>
+                    ) : (
+                      <NavLink to="/" onClick={() => window.scrollTo(0, 0)} className="text-base py-2 mx-6 font-quicksand font-base group-hover:text-primary">
+                        Home
+                      </NavLink>
+                    )}
                   </li>
-                  <li className="group">
-                    <a href="#movies" className="text-white">
-                      Movies
-                    </a>
+                  <li className="group lg:flex">
+                    {location === '/' ? (
+                      <a href="#movies" className="text-base py-2 mx-6 font-quicksand font-base group-hover:text-primary">
+                        Movies
+                      </a>
+                    ) : (
+                      <NavLink to="/#movies" onClick={() => window.scrollTo(0, 792)} className="text-base py-2 mx-6 font-quicksand font-base group-hover:text-primary">
+                        Movies
+                      </NavLink>
+                    )}
                   </li>
-                  <li className="group">
-                    <a href="#mylist" className="text-white">
+                  <li className="group lg:flex">
+                    <NavLink to="/bookmark" onClick={() => window.scrollTo(0, 0)} className="text-base py-2 mx-6 font-quicksand font-base group-hover:text-primary">
                       My List
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
+
+                <form onSubmit={handleSubmit} className="pt-6 px-6 lg:pt-0 lg:px-0 flex">
+                  <input type="text" onChange={searchChange} className="text-base border border-primary border-opacity-50 bg-secblack/20 rounded-lg text-white py-1 px-2 focus:outline-none focus:ring-0" placeholder="Search Movie" />
+                </form>
               </div>
             </nav>
           </div>
-
-          <form onSubmit={handleSubmit} className="mx-6 flex">
-            <input type="text" onChange={searchChange} className="text-base border border-primary border-opacity-50 rounded-lg mr-3 px-2 w-1/2" />
-            <button className="py-1 px-3 w-1/2 md:w-1/3 bg-primary rounded-lg shadow-sm text-white transition duration-200 hover:brightness-125">Search</button>
-          </form>
         </div>
       </div>
     </header>

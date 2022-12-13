@@ -1,64 +1,80 @@
-import React from "react";
-import CartFilm from "../component/CartFilm";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { HiOutlineBookmark, HiBookmark } from 'react-icons/hi';
+import { useDispatch, useSelector } from 'react-redux';
+import CardMovie from '../component/CardMovie/CardMovie';
+import { bookmarkMovie, getDetail, unBookmarkMovie } from '../redux/features/movieSlice';
 
 const Details = () => {
-    return (
-        <section id="details" className="container p-10">
-            <div className="md:flex">
-                <div className="max-w-[28rem] lg:pr-28 md:p-5 justify-center ">
-                    <img
-                        className="rounded-xl max-h-[400px]"
-                        src="https://m.media-amazon.com/images/M/MV5BYzIzYmJlYTYtNGNiYy00N2EwLTk4ZjItMGYyZTJiOTVkM2RlXkEyXkFqcGdeQXVyODY1NDk1NjE@._V1_SX300.jpg"
-                        alt="gbr1"
-                    />
-                </div>
-                <div className="max-w-[28rem] p-5">
-                    <h1 className="pb-3 lg:text-3xl md:text-3xl sm:text-xl font-medium">
-                        The Batman
-                    </h1>
-                    <p className="py-2 text-[1rem]">Action | Crime | Drama</p>
-                    <p className="py-2 text-[1rem]">IMDb: 7.9 (imdb rating)</p>
-                    <p className="py-2 text-[1rem]">2h 26m (runtime)</p>
-                    <p className="py-2 text-[1rem]">16+ (rated)</p>
-                    <p className="py-2 text-[1rem]">USA, 2022 (country)</p>
-                    <p className="py-2 text-[1rem] text-grey">
-                        <span className="font-semibold text-white">
-                            Director :{" "}
-                        </span>
-                        (director)
-                    </p>
-                    <p className="py-2 text-[1rem] text-grey">
-                        <span className="font-semibold text-white">
-                            Actors :{" "}
-                        </span>
-                        (actors)
-                    </p>
-                    <div className="pt-3 flex">
-                        <div>icon bookmark</div>
-                        <div>icon download</div>
-                        <div>ison share</div>
-                        <div>button watch trailer</div>
-                    </div>
-                </div>
+  const { movies, movieDetail, bookmark } = useSelector((store) => store.movie);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const isSaved = bookmark.find((item) => item.imdbID === movieDetail.imdbID);
+  const related = movies.filter((item, index) => index <= 5 && item.imdbID !== id);
+
+  useEffect(() => {
+    dispatch(getDetail(id));
+  }, [dispatch, id]);
+
+  const handleSave = () => {
+    dispatch(bookmarkMovie(movieDetail));
+  };
+  const handleUnSave = () => {
+    dispatch(unBookmarkMovie(movieDetail));
+  };
+
+  return (
+    <section id="detail" className="py-28 lg:px-24">
+      <div className="container">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
+          <div className="w-full lg:w-1/3 flex justify-center items-center">
+            <img className="rounded-xl max-h-[50rem] object-cover" src={movieDetail?.Poster} alt={movieDetail?.Title} />
+          </div>
+          <div className="w-full lg:w-2/3">
+            <h1 className="pb-3 lg:text-3xl md:text-3xl sm:text-xl font-medium">{movieDetail?.Title}</h1>
+            <div className="flex flex-col justify-center gap-4">
+              <p>{movieDetail?.Genre}</p>
+              <p>IMDb : {movieDetail?.imdbRating}</p>
+              <p>
+                {movieDetail?.Runtime?.hour} h {movieDetail?.Runtime?.minute} m
+              </p>
+              <p>{movieDetail?.Rated}</p>
+              <p className="font-light text-secondary">
+                <span className="font-medium text-white">Director:</span> {movieDetail?.Director}
+              </p>
+              <p className="font-light text-secondary">
+                <span className="font-medium text-white">Actors : </span>
+                {movieDetail?.Actors}
+              </p>
             </div>
-            <div className="p-5">
-                <h1 className="text-xl py-2">Descriptions</h1>
-                <p className="text-grey text-lg py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div className="pt-3 flex">
+              {isSaved ? (
+                <button onClick={handleUnSave}>
+                  <HiBookmark size={32} color="#DE5D83" />
+                </button>
+              ) : (
+                <button onClick={handleSave}>
+                  <HiOutlineBookmark size={32} color="#DE5D83" />
+                </button>
+              )}
             </div>
-            <div className="p-5">
-                <h1 className="text-2xl py-8">Recommendation</h1>
-                <div className="grid justify-center md:grid-cols-2 md:gap-8 xl:grid-cols-4">
-                    <CartFilm/>
-                    <CartFilm/>
-                    <CartFilm/>
-                    <CartFilm/>
-                    <CartFilm/>
-                    <CartFilm/>
-                    <CartFilm/>
-                </div>
-            </div>
-        </section>
-    );
+          </div>
+        </div>
+
+        <div className="py-8">
+          <h1 className="text-xl mb-6">Description</h1>
+          <p className="text-secoppacity">{movieDetail?.Plot}</p>
+        </div>
+        <div className="">
+          <div className="flex flex-col justify-center lg:items-start items-center">
+            <h1 className="text-2xl py-8">Related Movies</h1>
+            <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">{related && related.map((movie, index) => <CardMovie movie={movie} key={index} />)}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Details;

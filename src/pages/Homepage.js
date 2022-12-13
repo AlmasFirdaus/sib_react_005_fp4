@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { pikachu } from '../assets/images';
 import ContainerMovie from '../component/ContainerMovie/ContainerMovie';
-import { HiOutlineBookmark, HiBookmark } from 'react-icons/hi';
 import { movie } from '../constant/data';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
   const [hour, setHour] = useState();
   const [minute, setMinute] = useState();
-  const [isSaved, setIsSaved] = useState(false);
+  const navigate = useNavigate();
+
+  const detail = () => {
+    window.scrollTo(0, 0);
+    navigate(`/detail/${movie.imdbID}`);
+  };
 
   useEffect(() => {
     const m = movie.Runtime.split(' ', 1);
@@ -16,38 +20,36 @@ const Homepage = () => {
     setMinute(m % 60);
   }, []);
   return (
-    <section className="w-full h-screen bg-cover bg-no-repeat relative" style={{ backgroundImage: `url(${pikachu})` }}>
-      <div className="bg-gradient-to-b from-transparent to-secblack h-screen" />
-      <div className="container flex items-center text-white font-montserrat h-screen absolute top-0">
-        <div className=" w-1/2 flex flex-col">
-          <h2>{movie.Genre}</h2>
-          <h1 className="font-medium text-5xl py-6">{movie.Title}</h1>
-          <p className="mb-4">{movie.Plot}</p>
-          <div className="text-sm flex gap-8 items-center">
-            <p className="">
-              IMDB : <span className="font-medium">{movie.imdbRating}</span>
-            </p>
-            <p className="">
-              {hour} h {minute} m
-            </p>
-          </div>
-          <div className="flex items-center space-x-6 mt-14">
-            <Link to="/detail" className="px-6 py-2 border border-primary font-semibold text-primary rounded-sm transition-all ease-in-out duration-300 hover:bg-white">
-              Detail
-            </Link>
-            {isSaved ? (
-              <button onClick={() => setIsSaved(false)}>
-                <HiBookmark size={32} color="#DE5D83" />
-              </button>
-            ) : (
-              <button onClick={() => setIsSaved(true)}>
-                <HiOutlineBookmark size={32} color="#DE5D83" />
-              </button>
-            )}
+    <section id="home">
+      <div className="w-full h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${pikachu})` }}>
+        <div className="bg-gradient-to-b from-transparent to-secblack w-full h-screen" />
+      </div>
+      <div className="w-full flex items-center absolute top-0">
+        <div className="container px-10 xl:px-24 py-4">
+          <div className="h-screen flex justify-between items-center">
+            <div className="w-full lg:w-1/2 flex flex-col gap-4">
+              <h2>{movie.Genre}</h2>
+              <h1 className="text-5xl">{movie.Title}</h1>
+              <p className="font-light tracking-wide">{movie.Plot}</p>
+
+              <div className="flex items-center gap-4">
+                <span>
+                  IMDb : <span>{movie.imdbRating}</span>
+                </span>
+                <span>
+                  {hour} h {minute} m
+                </span>
+              </div>
+
+              <div className="w-fit mt-8 relative">
+                <button onClick={detail} className="text-primary px-6 py-2 border border-primary bg-transparent rounded-sm transition-all ease-in-out duration-300 hover:bg-white">
+                  Detail
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
       <ContainerMovie />
     </section>
   );
