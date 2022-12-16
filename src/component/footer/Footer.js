@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from '../../assets/logo-1.png';
 import kodeId from '../../assets/kode-hactive.png';
+import { Link, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation().pathname;
   return (
     <footer className="pt-24 pb-12 border-t-2 border-primary relative">
       <div className="container">
@@ -46,6 +48,55 @@ const Footer = () => {
                 <a href="https://www.kode.id" target="_blank" rel="noreferrer noopener">
                   <img src={kodeId} alt="kode.id" className="hover:scale-105" width={100} />
                 </a>
+              </li>
+            </ul>
+          </div>
+          <div className="mb-12 w-full px-4 md:w-1/3">
+            <h3 className="mb-5 text-xl font-semibold text-primary">Navigation</h3>
+            <ul className="text-primary">
+              <li>
+                {location === '/' ? (
+                  <a href="#home" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    Home
+                  </a>
+                ) : (
+                  <Link to="/" onClick={window.scrollTo(0, 0)} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    Home
+                  </Link>
+                )}
+              </li>
+              <li>
+                {location === '/' ? (
+                  <a href="#movies" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    Movies
+                  </a>
+                ) : (
+                  <Link to="/" onClick={() => window.scrollTo(0, 729)} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    Movies
+                  </Link>
+                )}
+              </li>
+              <li>
+                {location === '/bookmark' ? (
+                  <a href="#bookmark" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    Wishlist
+                  </a>
+                ) : (
+                  <Link to="/bookmark" onClick={window.scrollTo(0, 0)} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    Wishlist
+                  </Link>
+                )}
+              </li>
+              <li>
+                {location === '/about' ? (
+                  <a href="#about" className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    About
+                  </a>
+                ) : (
+                  <Link to="/about" onClick={window.scrollTo(0, 0)} className="mb-3 inline-block text-lg hover:text-secondary transition duration-300 ease-in-out hover:before:content-['>'] hover:before:mr-1">
+                    About
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './component/footer/Footer';
 import Navbar from './component/navbar/Navbar';
+import About from './pages/About';
 import Bookmark from './pages/Bookmark';
 import Details from './pages/Details';
 import Homepage from './pages/Homepage';
@@ -27,6 +28,7 @@ function App() {
         <Route path="detail/:id" element={<Details />} />
         <Route path="search/:s" element={<Search />} />
         <Route path="bookmark" element={<Bookmark />} />
+        <Route path="about" element={<About />} />
       </Routes>
       <Footer />
     </div>

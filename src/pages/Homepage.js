@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { pikachu } from '../assets/images';
+import pikachu from '../assets/pikachu.jpg';
 import ContainerMovie from '../component/ContainerMovie/ContainerMovie';
 import { movie } from '../constant/data';
 import { useNavigate } from 'react-router-dom';

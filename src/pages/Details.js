@@ -6,12 +6,12 @@ import CardMovie from '../component/CardMovie/CardMovie';
 import { bookmarkMovie, getDetail, unBookmarkMovie } from '../redux/features/movieSlice';
 
 const Details = () => {
-  const { movies, movieDetail, bookmark } = useSelector((store) => store.movie);
+  const { movies, movieSearch, movieDetail, bookmark } = useSelector((store) => store.movie);
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const isSaved = bookmark.find((item) => item.imdbID === movieDetail.imdbID);
-  const related = movies.filter((item, index) => index <= 5 && item.imdbID !== id);
+  const related = movieSearch.length > 0 ? movieSearch.filter((item, index) => index <= 5 && item.imdbID !== id) : movies.filter((item, index) => index <= 5 && item.imdbID !== id);
 
   useEffect(() => {
     dispatch(getDetail(id));

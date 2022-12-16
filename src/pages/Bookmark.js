@@ -6,7 +6,7 @@ const Bookmark = () => {
   const { bookmark } = useSelector((store) => store.movie);
 
   return (
-    <section className="bg-secblack min-h-screen pt-20 pb-28" id="movies">
+    <section className="bg-secblack min-h-screen pt-20 pb-28" id="bookmark">
       <div className="container px-10 xl:px-24 py-4 ">
         <h3 className="text-white text-3xl py-10 text-center uppercase">Watch List</h3>
         <div className="flex flex-col">
