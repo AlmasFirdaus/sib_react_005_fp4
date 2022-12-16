@@ -44,9 +44,9 @@
 <li><strong>Demo <img src="https://cdn.pixabay.com/photo/2017/03/28/01/46/check-mark-2180770_1280.png" alt="" width="15" height="15" /></strong>
 <ol>
 <li><a href="https://trello.com/b/GbptzXdd/project-kelompok-7-rctn-ks05" target="_blank" rel="noreferrer noopener">Link Trello</a></li>
-<li><a href="https://www.figma.com/file/0d9obmOnduzyf8rfrjpn2Q/Final-Project-4?node-id=2%3A6&t=YCHT2RU8gURFHdwU-1" target="_blank" rel="noreferrer noopener">Link Figma</a></li>
+<li><a href="https://www.figma.com/file/0d9obmOnduzyf8rfrjpn2Q/Final-Project-4?node-id=2%3A6&amp;t=YCHT2RU8gURFHdwU-1" target="_blank" rel="noreferrer noopener">Link Figma</a></li>
 <li><a href="https://drive.google.com/file/d/178l6WvJkjo8qGK4rsJT8tLRgKFQwF_W4/view?usp=share_link" target="_blank" rel="noreferrer noopener">Link Panduan</a></li>
-<li><a href="https://docs.google.com/presentation/d/1Ut2PVp1X-6WVJt9Rh_8mEUF3mlRlyst2/edit?usp=share_link&ouid=101891266544378704929&rtpof=true&sd=true" target="_blank" rel="noreferrer noopener">Link PPT</a></li>
+<li><a href="https://docs.google.com/presentation/d/1Ut2PVp1X-6WVJt9Rh_8mEUF3mlRlyst2/edit?usp=share_link&amp;ouid=101891266544378704929&amp;rtpof=true&amp;sd=true" target="_blank" rel="noreferrer noopener">Link PPT</a></li>
 </ol>
 </li>
 </ol>
@@ -64,9 +64,9 @@
 </li>
 <li>Running Program<br />
 <p>Setelah menginstall module module yang digunakan, program sudah dapat digunakan pada localhost dengan mengetikan pada terminal npm start</p>
-</li>
-<li>Terdapat fitur save film untuk menyimpan film favorit</li>
-<li>&nbsp;</li>
+<ul>
+<li>Terdapat fitur save untuk menyimpan film favorit</li>
+<li>Web responsive</li>
 </ul>
 </li>
 </ol>
